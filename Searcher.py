@@ -220,13 +220,13 @@ for f in exel_files:
 """
 print('Start program')
 # User input for directory where files to search
-expectedDir = '.\\TSN-2001'
+expectedDir = '.\\SN-2012'
 
 # Создание директории в которой будут храниться результаты
 if not os.path.isdir(".\\results"):
     os.mkdir(".\\results")
 
-# Подсчет количества файлов экселя в директории
+"""# Подсчет количества файлов экселя в директории
 
 directory = os.listdir(path=expectedDir)
 w = 0
@@ -234,7 +234,7 @@ for file in directory:
     if file.endswith((".xlsx", 'xls')):
         w = w + 1
     else:
-        continue
+        continue"""
 
 # first get full file name with directores using for loop
 i = 1
@@ -247,9 +247,13 @@ for fileName_relative in glob.glob(expectedDir + "**/*.xlsx", recursive=True):
 
     # Экземпляр класса, который решает нашу первую задачу
     LOLP = ListOfListsProducer(path_to_file=fileName_relative)
-    result = LOLP.work_with_lists()
+    try:
+        result = LOLP.work_with_lists()
+    except AttributeError:
+        print('AttributeError проверить функцию подсчета колонок')
+
     print(f'Получен результат парсинга файла: {fileName_absolute}')
-    print(result[1:3])
+    print(result[1:2])
     save_path = '.\\results'
 
     print(f'Запись результата парсига {fileName_absolute}')

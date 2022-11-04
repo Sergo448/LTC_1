@@ -203,7 +203,8 @@ class ListOfListsProducer:
 
 
 # Путь до файла экселя
-path_to_file = '/home/sergey/PycharmProjects/LTC_1_notebook/exel_data/Chapter_1_buildibgs.xlsx'
+
+path_to_file = '.\\TSN-2001\\3.Строительные.Сборник 1-9.xlsx'
 # Экземпляр класса, который решает нашу первую задачу
 LOLP = ListOfListsProducer(path_to_file=path_to_file)
 
