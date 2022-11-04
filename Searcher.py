@@ -218,7 +218,7 @@ for f in exel_files:
     print('Content:')
     print()
 """
-
+print('Start program')
 # User input for directory where files to search
 expectedDir = '.\\TSN-2001'
 
@@ -226,7 +226,19 @@ expectedDir = '.\\TSN-2001'
 if not os.path.isdir(".\\results"):
     os.mkdir(".\\results")
 
+# Подсчет количества файлов экселя в директории
+
+directory = os.listdir(path=expectedDir)
+w = 0
+for file in directory:
+    if file.endswith((".xlsx", 'xls')):
+        w = w + 1
+    else:
+        continue
+
 # first get full file name with directores using for loop
+i = 1
+
 for fileName_relative in glob.glob(expectedDir + "**/*.xlsx", recursive=True):
     print("Full file name with directories: ", fileName_relative)
     # Now get the file name with os.path.basename
@@ -236,8 +248,24 @@ for fileName_relative in glob.glob(expectedDir + "**/*.xlsx", recursive=True):
     # Экземпляр класса, который решает нашу первую задачу
     LOLP = ListOfListsProducer(path_to_file=fileName_relative)
     result = LOLP.work_with_lists()
+    print(f'Получен результат парсинга файла: {fileName_absolute}')
+    print(result[1:3])
+    save_path = '.\\results'
 
-    with open(fileName_relative + '**/*.txt', 'w') as f:
-        for list in result:
-            f.write(str(result) + '\n'')
+    print(f'Запись результата парсига {fileName_absolute}')
 
+    completeName = os.path.join(save_path, f'tests_results_{i}' + ".txt")
+    with open(completeName, 'w') as f:
+        f.write(str(result) + '\n')
+        print(f'Запись результата парсига {fileName_absolute} в {completeName} прошла успешно')
+    i = i + 1
+
+"""    for i in range(w):
+
+        completeName = os.path.join(save_path, f'tests_results_{i}' + ".txt")
+        with open(completeName, 'w') as f:
+
+            f.write(str(result) + '\n')
+            print(f'Запись результата парсига {fileName_absolute} в {completeName} прошла успешно')
+"""
+print('End program')
