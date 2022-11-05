@@ -69,7 +69,7 @@ class ListOfListsProducer:
         return razdel_array, n_row
 
     @staticmethod
-    def make_rows(data, start_row):
+    def make_rows(data, start_row, ncols):
         """
 
         :param data:
@@ -78,15 +78,12 @@ class ListOfListsProducer:
         """
         Row_list = []
 
-        for index, rows in data[start_row + 1:].iterrows():
-            my_list = [rows.Col0, rows.Col1, rows.Col2, rows.Col3,
-                       rows.Col4, rows.Col5, rows.Col6, rows.Col7,
-                       rows.Col8, rows.Col9, rows.Col10, rows.Col11,
-                       rows.Col12, rows.Col13, rows.Col14, rows.Col15,
-                       rows.Col16, rows.Col17, rows.Col8, rows.Col19,
-                       rows.Col20]
+        list_rows = []
+        for i in range(len(ncols)):
+            list_rows.append(i)
 
-            Row_list.append(my_list)
+        for index, rows in data[start_row + 1:].iterrows():
+            Row_list.append([rows[x] for x in list_rows])
 
         return Row_list
 
@@ -101,7 +98,7 @@ class ListOfListsProducer:
 
         row_razdel, start_row = self.searcher_row_razdel(data=data_excel)
 
-        rows_ = self.make_rows(data=data_excel, start_row=start_row)
+        rows_ = self.make_rows(data=data_excel, start_row=start_row, ncols=ncols)
 
         # Создаем списки данных для будущего иерархического списка
         list_of_razdel_nn = []
