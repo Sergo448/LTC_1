@@ -151,9 +151,9 @@ class ListOfListsProducer:
 
                 # Заполняем список затрат
                 if str(rows_[i][4]) == 'ЗТР':
-                    list_of_works_parts[3].append(rows_[i - 1][19])
+                    list_of_works_parts[3].append(rows_[i - 1][len(ncols)-2])
                 else:
-                    list_of_works_parts[3].append(rows_[i][16])
+                    list_of_works_parts[3].append(rows_[i][len(ncols) - 5])
                 # Для ЗТР если nan то берем клетку по диагонали вверх
 
             else:
