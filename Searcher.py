@@ -243,6 +243,7 @@ for fileName_relative in glob.glob(expectedDir + "**/*.xlsx", recursive=True):
     print("Only file name: ", fileName_absolute)
 
     # Экземпляр класса, который решает нашу первую задачу
+
     LOLP = ListOfListsProducer(path_to_file=fileName_relative)
 
     try:
