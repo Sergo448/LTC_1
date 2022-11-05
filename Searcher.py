@@ -247,10 +247,13 @@ for fileName_relative in glob.glob(expectedDir + "**/*.xlsx", recursive=True):
 
     # Экземпляр класса, который решает нашу первую задачу
     LOLP = ListOfListsProducer(path_to_file=fileName_relative)
+
     try:
         result = LOLP.work_with_lists()
     except AttributeError:
         print('AttributeError проверить функцию подсчета колонок')
+        result = 'fileName_relative имеет не то количество колонок'
+        continue
 
     print(f'Получен результат парсинга файла: {fileName_absolute}')
     print(result[1:2])
